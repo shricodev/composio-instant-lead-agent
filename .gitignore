@@ -1,0 +1,9 @@
+node_modules/
+.env
+# Local state and real enrichment output (contains personal data) — never commit
+data/*.db
+data/*.db-*
+out/
+
+# Draft blog post (not part of the repo)
+blog-content*.md
