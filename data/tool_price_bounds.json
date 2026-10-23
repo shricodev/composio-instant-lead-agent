@@ -1,0 +1,47 @@
+{
+  "tools": {
+    "HUNTER_COMBINED_ENRICHMENT": {
+      "maxUsd": "0.004",
+      "reviewedDescription": "$0.004 per billed combined enrichment",
+      "note": "Person + company in one call. Primary tier-1 enrichment."
+    },
+    "HUNTER_EMAIL_VERIFIER": {
+      "maxUsd": "0.012",
+      "reviewedDescription": "$0.012 per billed email verification",
+      "note": "One verification per call."
+    },
+    "APOLLO_PEOPLE_ENRICHMENT": {
+      "maxUsd": "0.18",
+      "reviewedDescription": "Estimated $0.02–$0.18 per person enriched (1–9 credits; waterfall may cost more)",
+      "note": "Top of the published range. We always send reveal_phone_number=false and reveal_personal_emails=false; the tool exposes no waterfall flag, so the reconciled charge is checked against this bound."
+    },
+    "FIRECRAWL_SCRAPE": {
+      "maxUsd": "0.003",
+      "reviewedDescription": "$0.003 per basic page scraped",
+      "note": "Basic scrape only (no JSON/extract formats, which bill more)."
+    },
+    "SERPER_SEARCH_NEWS": {
+      "maxUsd": "0.002",
+      "reviewedDescription": "$0.001 per credit used for news searches",
+      "note": "1 credit for <=10 results; bound allows 2 credits."
+    },
+    "PARALLEL_SEARCH_WEB": {
+      "maxUsd": "0.001",
+      "reviewedDescription": "$0.001 per Fast search with up to 10 results"
+    },
+    "EXA_SEARCH": {
+      "maxUsd": "0.007",
+      "reviewedDescription": "$0.007 per search",
+      "note": "Instant Exa: type=auto, <=10 results, no inline contents."
+    },
+    "EXA_GET_CONTENTS_ACTION": {
+      "maxUsd": "0.005",
+      "reviewedDescription": "$0.001 per page per content type",
+      "note": "Tier 2 caps contents requests at 5 URLs x 1 content type."
+    },
+    "FIRECRAWL_MAP_MULTIPLE_URLS_BASED_ON_OPTIONS": {
+      "maxUsd": "0.003",
+      "reviewedDescription": "$0.003 per basic Map call"
+    }
+  }
+}
