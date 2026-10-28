@@ -1,3 +1,4 @@
+import { ComposioWebhookPayloadError } from "@composio/core";
 import { serve } from "@hono/node-server";
 import { Hono, type Context } from "hono";
 import { randomUUID, timingSafeEqual } from "node:crypto";
@@ -79,7 +80,10 @@ export function createApp(deps: { store: Store; enqueue: Enqueue; verifyTrigger?
         signature: c.req.header("webhook-signature") ?? "",
         timestamp: c.req.header("webhook-timestamp") ?? "",
       });
-    } catch {
+    } catch (err) {
+      // Signature was valid but the SDK couldn't parse the payload: acknowledge it,
+      // a 401 would only make Composio redeliver something we can never read.
+      if (err instanceof ComposioWebhookPayloadError) return c.json({ status: "ignored", reason: "unparseable payload" }, 200);
       return c.json({ error: "invalid signature" }, 401);
     }
     // Acknowledge triggers we don't handle so Composio doesn't keep retrying them.

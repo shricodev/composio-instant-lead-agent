@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
+import { ComposioWebhookPayloadError } from "@composio/core";
 
 process.env.COMPOSIO_API_KEY = "test";
 process.env.SIGNUP_WEBHOOK_SECRET = "s3cret";
@@ -70,6 +71,8 @@ describe("POST /webhooks/composio (Calendly trigger)", () => {
   it("rejects bad signatures and ignores other triggers", async () => {
     const { app: bad } = app(async () => Promise.reject(new Error("sig")));
     expect((await bad.request(delivery())).status).toBe(401);
+    const { app: unparseable } = app(async () => Promise.reject(new ComposioWebhookPayloadError("bad shape")));
+    expect(await (await unparseable.request(delivery())).json()).toMatchObject({ status: "ignored" });
     const { app: other, enqueue } = app(async () => ({ triggerSlug: "SLACK_RECEIVE_MESSAGE", payload: {} }));
     expect(await (await other.request(delivery())).json()).toMatchObject({ status: "ignored" });
     expect(enqueue).not.toHaveBeenCalled();
