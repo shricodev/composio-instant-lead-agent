@@ -1,0 +1,20 @@
+[
+  {
+    "event_id": "sample_001",
+    "email": "support@composio.dev",
+    "company_domain": "composio.dev",
+    "source": "signup"
+  },
+  {
+    "event_id": "sample_002",
+    "email": "test@mailinator.com",
+    "name": "Disposable Test",
+    "source": "signup"
+  },
+  {
+    "event_id": "sample_003",
+    "email": "support@linear.app",
+    "company_name": "Linear",
+    "source": "demo_booking"
+  }
+]
